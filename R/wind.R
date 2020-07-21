@@ -68,3 +68,39 @@ find_xy_ncdf4 <-function (in.ncfile, sitelon, sitelat, VAR='no.wind', CELL_SIZE 
     ij = list (ii=ii, jj=jj)
     return (ij)
 }
+
+
+#' Calculate wind speed and direction from U and V winds
+#'
+#' @param u U component of the wind vector
+#' @param v V component of the wind vector
+#'
+#' @return
+#' @export uv_to_wspd_wdir
+#'
+#' @examples
+uv_to_wspd_wdir <- function (u,v){
+    wspd=sqrt(u^2+v^2)
+    wdir=atan2(v, -u)*180/pi + 90
+    wdir[wdir<0]=wdir[wdir<0] + 360
+    return(data.frame(wspd,wdir))
+}
+
+
+#' Calculate meteorological wind direction
+#'
+#' @param u U component of the wind vector
+#' @param v V component of the wind vector
+#'
+#' @return meteorological wdir
+#' @export uv_to_meteor_wdir
+#' @note This function should result in the same wind direction as uv_to_wspd_wdir.
+#' @examples
+uv_to_meteor_wdir <- function (u,v) {
+    # https://www.ncl.ucar.edu/Document/Functions/Contributed/wind_direction.shtml
+    if (v >= 0) ANG = 180
+    if (u < 0 & v < 0)  ANG = 0
+    if (u >= 0 & v < 0) ANG = 360
+    met_direction = (180 / pi) * atan (u / v) + ANG
+    return (met_direction)
+}
