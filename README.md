@@ -1,5 +1,6 @@
 # rwrf
 
+Some useful functions for WRF modeling and post-run analysis.
 
 # Just for the record
 
