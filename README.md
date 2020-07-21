@@ -2,6 +2,11 @@
 
 Some useful functions for WRF modeling and post-run analysis.
 
+# Useful Sources
+## Wind direction
+* http://colaweb.gmu.edu/dev/clim301/lectures/wind/wind-uv
+* https://www.eol.ucar.edu/content/wind-direction-quick-reference
+
 # Just for the record
 
 When using RStudio, do the following:
