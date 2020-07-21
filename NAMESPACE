@@ -3,6 +3,7 @@
 export(calc_average_wind_direction)
 export(find_xy_ncdf4)
 export(pivot_long_wind_profiler_mat)
+export(pivot_long_wrf_winds)
 export(uv_to_meteor_wdir)
 export(uv_to_wspd_wdir)
 import(circular)
