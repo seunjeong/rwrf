@@ -91,7 +91,7 @@ plot_wind_rose <- function (df, wspd_var, wdir_var, wspd_breaks=c(3, 6, 9), face
                             legend_tile ="Wind Speed\n(m/s)", n_col = 1, ggtheme = "bw", legend_title_align = 0.5)
 {
     if (!is.null (facet_var)) {
-        p =with (df, windrose(get(wspd_var), get(wdir_var),
+        p =with (df, clifro::windrose(get(wspd_var), get(wdir_var),
                               facet = get(facet_var),
                               speed_cuts = wspd_breaks,
                               legend_title = legend_tile,
@@ -100,7 +100,7 @@ plot_wind_rose <- function (df, wspd_var, wdir_var, wspd_breaks=c(3, 6, 9), face
                               #col_pal = "Greys",
                               n_col = n_col))
     } else {
-        p =with (df, windrose(get(wspd_var), get(wdir_var),
+        p =with (df, clifro::windrose(get(wspd_var), get(wdir_var),
                               speed_cuts = wspd_breaks,
                               legend_title = legend_tile,
                               legend.title.align = legend_title_align,
