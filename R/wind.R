@@ -68,3 +68,46 @@ calc_average_wind_direction <- function (wdir) {
     #print (mean_wdir)
     return (mean_wdir)
 }
+
+
+#' Plot wind rose
+#'
+#' @param df
+#' @param wspd_var string variable for wind speed
+#' @param wdir_var string variable for wind direction
+#' @param wspd_breaks breaks for wind speed
+#' @param facet_var string variable name used for the facet plot
+#' @param legend_tile legend title
+#' @param ggtheme
+#' @param legend_title_align
+#' @param n_col number of columns in the facet plot
+#' @import clifro
+#' @import dplyr
+#' @return
+#' @export plot_wind_rose
+#'
+#' @examples
+plot_wind_rose <- function (df, wspd_var, wdir_var, wspd_breaks=c(3, 6, 9), facet_var = NULL,
+                            legend_tile ="Wind Speed\n(m/s)", n_col = 1, ggtheme = "bw", legend_title_align = 0.5)
+{
+    if (!is.null (facet_var)) {
+        p =with (df, windrose(get(wspd_var), get(wdir_var),
+                              facet = get(facet_var),
+                              speed_cuts = wspd_breaks,
+                              legend_title = legend_tile,
+                              legend.title.align = legend_title_align,
+                              ggtheme = ggtheme,
+                              #col_pal = "Greys",
+                              n_col = n_col))
+    } else {
+        p =with (df, windrose(get(wspd_var), get(wdir_var),
+                              speed_cuts = wspd_breaks,
+                              legend_title = legend_tile,
+                              legend.title.align = legend_title_align,
+                              ggtheme = ggtheme,
+                              #col_pal = "Greys",
+                              n_col = n_col))
+    }
+
+    return (p)
+}
