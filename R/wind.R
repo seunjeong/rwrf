@@ -130,7 +130,7 @@ calc_wind_direction_difference <- function (x_deg, y_deg) {
         wdir_diff = abs(x_deg - y_deg)
     }
 
-    is_lg_180 = wdir_diff > 180
+    is_lg_180 = wdir_diff > 180 & !is.na (wdir_diff)
     wdir_diff [is_lg_180] = 360 - wdir_diff [is_lg_180]
 
     return (wdir_diff)
