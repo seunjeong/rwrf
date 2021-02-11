@@ -111,3 +111,26 @@ plot_wind_rose <- function (df, wspd_var, wdir_var, wspd_breaks=c(3, 6, 9), face
 
     return (p)
 }
+
+
+#' Calculate absolute difference of the two wind directions in degrees
+#'
+#' @param x_deg wind direction in degrees
+#' @param y_deg wind direction in degrees
+#'
+#' @return absolute difference of the two wind directions in degrees
+#' @export calc_wind_direction_difference
+#'
+#' @examples
+calc_wind_direction_difference <- function (x_deg, y_deg) {
+    if (FALSE) {
+        wdir_diff = abs(as.numeric (diff(circular(c(x_deg, y_deg), units = "degrees"))))
+    } else {
+        wdir_diff = abs(x_deg - y_deg)
+    }
+
+    if (wdir_diff>180) {
+        wdir_diff = 360 - wdir_diff
+    }
+    return (wdir_diff)
+}
